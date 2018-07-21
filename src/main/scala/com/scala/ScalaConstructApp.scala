@@ -21,6 +21,13 @@ object ScalaConstructApp {
     val girl = new Girl("name", 18, "13800000000", "Longhua")
     println(girl.name + " : " + girl.age + " : " + girl.phone + " : " + girl.address)
 
+    println("--------------")
+    val cindy = new Cindy("Cindy", 10, "Computer")
+    println(cindy)  // 当下面Cindy中的toSting方法没有被overwrite时，打印的结果是对象的hash：包名+类名+hash code（即：com.scala.Cindy@53b32d7）
+    //println(cindy.name + " : " + cindy.age + " : " + cindy.major)
+
+    println("======================")
+
   }
 
 }
@@ -31,7 +38,7 @@ object ScalaConstructApp {
 // 主构造函数
 class Girl(val name:String, val age:Int) {
 
-  println("Girl in")
+  println("Girl enter")
 
   def like(): Unit = {
     println(name + "like fruit")
@@ -55,9 +62,32 @@ class Girl(val name:String, val age:Int) {
     this.address = address
   }
 
-
-
-  println("Girl out")
-
+  println("Girl exit")
 
 }
+
+
+/**
+  *
+  * 类的继承
+  * 继承：发生在子和父类之间的
+  * 继承的时候，当我们创建子对象的时候，其实对先调用父类的构造方法
+  * 当调用的参数不是父类里面已经有的参数时，前面必须要加修饰符（val），否则子类在被调用的时候该参数是访问不到的
+  */
+class Cindy(name:String, age:Int, val major:String) extends Girl(name,age) {      // 继承主构造器
+
+  println("Cindy enter")
+
+  // 需要overwrite修饰符，如果想重写父类中已有的方法时，一定需要添加overwrite修饰符
+  override def toString = "cindy toString"    // toString在java中是一个object类的方法，一个特殊的方法
+
+  println("Cindy exit")
+}
+
+
+
+/**
+  * 抽象类
+  * 类中有一个或者多个方法没有实现：只有定义，没有实现
+  * 是不能直接使用的，必须要通过实现了该抽象类的属性或者方法来使用
+  */
