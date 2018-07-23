@@ -7,3 +7,12 @@ object是class的伴生对象，class是object的伴生类；
 调用 伴生() 没有new的，其实底层调用的就是伴生object里面的apply方法；否则调用的是class里面的apply方法。
 
 2. Scala 集合
+集合需要掌握的基本内容：
+    1）集合创建
+    2）集合赋值
+    3）集合取值
+
+数组Array
+    定长数组：5是length
+        scala> val a = new Array[String](5)
+    变长数组：
