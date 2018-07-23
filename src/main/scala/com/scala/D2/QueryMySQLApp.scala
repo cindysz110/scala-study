@@ -7,7 +7,7 @@ package com.scala.D2
 import scalikejdbc._
 import scalikejdbc.config._
 
-case class user(name:String, age:Int)
+case class user(id:Int, name:String, age:Int)
 
 object QueryMySQLApp {
 
@@ -34,8 +34,7 @@ object QueryMySQLApp {
     // select
     def select() = {
       DB.readOnly { implicit session =>
-        //val sql = SQL("select * from people ").map(rs => (rs.string("name"), rs.int("age"))).toList().apply()
-        SQL("select name,age from user").map(rs => user(rs.string("name"), rs.int("age"))).list().apply()
+        SQL("select id,name,age from user").map(rs => user(rs.int("id"),rs.string("name"), rs.int("age"))).list().apply()
       }
     }
 
