@@ -6,13 +6,32 @@ object是class的伴生对象，class是object的伴生类；
 一般互为伴生的两者都会写在同一个scala类里面，即同一个文件里面；
 调用 伴生() 没有new的，其实底层调用的就是伴生object里面的apply方法；否则调用的是class里面的apply方法。
 
-2. Scala 集合
+
+2. Trait 接口
+一个类实现trait的方法，需要使用关键字with；第一个使用extends，后续的都是用with。
+
+3. Scala 集合
 集合需要掌握的基本内容：
     1）集合创建
     2）集合赋值
     3）集合取值
 
-数组Array
-    定长数组：5是length
+3.1 数组Array
+    定长数组：Array
         scala> val a = new Array[String](5)
-    变长数组：
+    变长数组：ArrayBuffer
+        变长数组添加元素用：+=
+        变长数组减少元素用：-=
+        变长数组+定长数组使用：++=
+
+3.2 列表List
+    Nil：一个空的List        // 重点记住
+    head：List里面第一个元素
+    tail：List里面除head以外其他的元素列表
+
+3.3 Set
+    Set和List区别：
+        Set：无序，不重复
+        List：有序，可重复
+
+3.4 Map

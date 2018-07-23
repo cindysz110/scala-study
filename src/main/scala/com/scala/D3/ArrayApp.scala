@@ -4,7 +4,7 @@ object ArrayApp {
 
   def main(args: Array[String]): Unit = {
 
-    println("=====================Buffer====================")
+    println("=====================Array====================")
 
     // 数组定义
     val a = new Array[String](5)
@@ -87,6 +87,7 @@ object ArrayApp {
     println(c.length)
 
     // 变长数组转成定长数组
+    // ArrayBuffer转换成定长的Array
     val c1 = c.toArray
     println(c1)
 
