@@ -1,0 +1,9 @@
+2018-07-21
+
+1. object VS class
+class Timer与object Timer同名，互为伴生；
+object是class的伴生对象，class是object的伴生类；
+一般互为伴生的两者都会写在同一个scala类里面，即同一个文件里面；
+调用 伴生() 没有new的，其实底层调用的就是伴生object里面的apply方法；否则调用的是class里面的apply方法。
+
+2. Scala 集合
