@@ -1,3 +1,7 @@
+/**
+  * 2018-07-18 作业：scalikejdbc 读写MySQL
+  */
+
 package com.scala.D2
 
 import scalikejdbc._

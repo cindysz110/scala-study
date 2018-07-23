@@ -1,3 +1,7 @@
+/**
+  * 2018-07-21 作业： 文件写操作
+  */
+
 package com.scala.D3
 
 import java.text.SimpleDateFormat

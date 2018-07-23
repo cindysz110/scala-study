@@ -1,3 +1,7 @@
+/**
+  * 2018-07-22 作业：Scala 实现word count
+  */
+
 package com.scala.D4
 
 object WordCountApp {
