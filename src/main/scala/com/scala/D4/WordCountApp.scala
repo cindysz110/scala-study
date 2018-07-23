@@ -15,10 +15,10 @@ object WordCountApp {
     // groupby key
     val grouped = wordToTuple.groupBy(_._1)
 
-    // (key, length)
+    // tuple(key, length)
     val wordList = grouped.map(t => (t._1,t._2.length))
 
-    // sort
+    // sort by value(count)
     println(wordList.toList.sortBy(_._2))
 
     // reverse
