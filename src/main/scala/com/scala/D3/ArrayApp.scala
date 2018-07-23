@@ -4,6 +4,8 @@ object ArrayApp {
 
   def main(args: Array[String]): Unit = {
 
+    println("=====================Buffer====================")
+
     // 数组定义
     val a = new Array[String](5)
 
@@ -41,8 +43,64 @@ object ArrayApp {
     println(a2.mkString("[",",","]"))
 
 
+    println("==================ArrayBuffer==================")
+
     // 工作中一般使用的Array都是变长的ArrayBuffer
 
+    import scala.collection.mutable.ArrayBuffer
+    //定义一个变长的数组，长度为空
+    val c = ArrayBuffer[Int]()
+
+    // 向变长数组里面添加一个值
+    c += 1
+    println(c)
+
+    // 添加多个值
+    c += (2,3,4)
+    println(c)
+
+    // 添加定长数组。变长+定长使用++=
+    c ++= Array(7,8,9,10,11,12,13,14,15,16)
+    println(c)
+
+    // 上面的方法都是向右加
+    // 下面的方法插入到指定的地方(从第0个位置开始，添加一个0)
+    c.insert(0,0)
+    println(c)
+
+    // 删除指定位置的一个值(下标从0开始）
+    c.remove(1)
+    println(c)
+
+    // 删除指定位置的多个值（从0开始删掉3个值）
+    c.remove(0,3)
+    println(c)
+
+    // 删除最后的n个元素
+    c.trimEnd(2)
+    println(c)
+
+    // 运算方法
+    println(c.max)
+    println(c.min)
+    println(c.sum)
+    println(c.length)
+
+    // 变长数组转成定长数组
+    val c1 = c.toArray
+    println(c1)
+
+
+    println("==================数组遍历==================")
+
+    for (i <- 0 until(c.length)) {
+      println(i)
+    }
+
+    // 增强for循环
+    for (ele <- c) {
+      println(ele)
+    }
   }
 
 }
