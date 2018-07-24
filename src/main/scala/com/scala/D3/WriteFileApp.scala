@@ -16,9 +16,12 @@ object WriteFileApp {
     for (i <- 1 to 100) {
 
       val domains = Array("www.ruozedata.com","www.zhibo8.com","www.dongqiudi.com")
-      val domain = Random.shuffle(domains.toList).head
+//      val domain = Random.shuffle(domains.toList).head
+      val domain = domains(Random.nextInt(domains.length))
 
-      val traffic = new util.Random().nextInt(9999)
+      // val traffic = new util.Random().nextInt(9999)
+      // val traffic = new util.Random().nextFloat()
+      val traffic = new util.Random().nextDouble() * 10000
 
       val time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format {
         System.currentTimeMillis()
