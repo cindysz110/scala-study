@@ -35,13 +35,36 @@ object MapApp extends App {
   c("k1") = 3
   println(c)
 
+  println("=====================遍历Map====================")
+
   // 不能取不在Map里面的key，报错
   // println(c("k3"))
-  // 工作中正确的做法是用get方法取value对应的值
+  // 工作中正确的做法是用get方法取value对应的值。取不到就取默认值，不会报错
   println(c.get("k1"))
-  println(c.getOrElse("k1", 9999))
+  println(c.getOrElse("k1", -9999))
 
 
+  // 遍历Map
+  for ((k,v) <- c) {
+    println(k + " : " + v)
+  }
+  // 也可以用占位符
+  for ((k,_) <- c) {
+    println(k + " : " + c.getOrElse(k, -9999))
+  }
 
+  // 遍历Map里面的keys
+  for (ele <- c.keySet) {
+    println(ele + " : " + c(ele))
+  }
+
+  // 遍历Map里面的values
+  for (ele <- c.values) {
+    println(ele)
+  }
+
+  for ((k,_) <- c) {
+    println(k + " : " + c.getOrElse(k, 9999))
+  }
 
 }

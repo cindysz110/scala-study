@@ -35,3 +35,5 @@ object是class的伴生对象，class是object的伴生类；
         List：有序，可重复
 
 3.4 Map
+    Map底层的数据结构是HashMap实现的
+    Map遍历
