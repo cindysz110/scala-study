@@ -1,0 +1,3 @@
+hello scala
+this is a text file
+hello world

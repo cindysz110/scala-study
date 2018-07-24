@@ -1,0 +1,63 @@
+高阶函数
+    map：对集合中的每一个元素都做一个操作
+    foreach：循环遍历集合
+    filter：过滤结果集
+    take：取集合里面的元素
+    reduce：两两相邻的元素做某一个操作
+        reduce/reduceLeft/reduceRight: 两两相邻的元素做某一个操作
+        fold/foldLeft/foldRight: 第一个参数是一个初始值，最终的结果加上这个值
+    zip：List配对成tuple，相当于inner join
+    faltten：压扁
+    flatMap：先map再压扁
+    max/min/sum/length/count: 聚合运算函数
+
+    上面这些函数都是spark里面的算子，但是scala里面这些算子并不是spark自带的高阶函数，只是名字相同而已。
+    RDD的函数和scala函数的名字大部分一模一样，无缝对接。
+
+    // 降低编写分布式应用程序的难度
+    Scala API 与 Spark Core API 非常类似
+    python datafrom 与 Spark SQL DataFrame API 非常类似
+
+两个数据类型：
+Tuple
+    Tuple 定义
+    Tuple 取值
+
+String
+    String 创建
+    String 取值
+    字符串插值：String Interpolation => println(s"$s2")
+
+
+文件操作
+    入参的颗粒化：将原来函数的2个入参拆开 => def sum(a:Int, b:Int) = a + b ==> def sum2(a:Int)(b:Int) = a + b
+
+    文件读取
+        Source.fromFile("test.txt")(Codec.UTF8)
+        Source.fromURL("http://www.baidu.com")
+    文件写入
+
+Exception异常处理
+异常处理
+    try {
+        语句
+    } catch {
+        case e: ArithmeticException => println(e.getMessage)
+        case e: FileNotFoundException => println(e.getMessage)
+        case e: Exception => println(e.getMessage)
+        case _ => println(" : ")    // 剩下的情况
+    } finally {
+        println("finally")
+    }
+
+模式匹配
+    模式匹配规范：
+    变量 match {
+        case 值 => 代码
+        case 值 => 代码
+        case -  => 代码
+    }
+
+    偏函数Partial Function
+        偏函数：被包在花括号内没有match的一组case语句。
+        偏函数可以理解为模式匹配里面的一种特殊情况，它在spark源码里面是有体现的（搜索PartialFunction）

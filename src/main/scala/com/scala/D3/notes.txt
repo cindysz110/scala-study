@@ -17,12 +17,12 @@ object是class的伴生对象，class是object的伴生类；
     3）集合取值
 
 3.1 数组Array
-    定长数组：Array
+    定长：Array
         scala> val a = new Array[String](5)
-    变长数组：ArrayBuffer
-        变长数组添加元素用：+=
-        变长数组减少元素用：-=
-        变长数组+定长数组使用：++=
+    变长：ArrayBuffer
+        添加元素用：+=
+        减少元素用：-=
+        变长+定长使用：++=
 
 3.2 列表List
     Nil：一个空的List        // 重点记住
@@ -35,5 +35,7 @@ object是class的伴生对象，class是object的伴生类；
         List：有序，可重复
 
 3.4 Map
+    定长：Map
+    变长：HashMap
     Map底层的数据结构是HashMap实现的
     Map遍历
