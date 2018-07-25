@@ -1,6 +1,7 @@
 2018-07-22
 
 高阶函数
+    算子/函数/API
     map：对集合中的每一个元素都做一个操作
     foreach：循环遍历集合
     filter：过滤结果集
@@ -40,17 +41,7 @@ String
     文件写入
 
 Exception异常处理
-异常处理
-    try {
-        语句
-    } catch {
-        case e: ArithmeticException => println(e.getMessage)
-        case e: FileNotFoundException => println(e.getMessage)
-        case e: Exception => println(e.getMessage)
-        case _ => println(" : ")    // 剩下的情况
-    } finally {
-        println("finally")
-    }
+
 
 模式匹配
     模式匹配规范：
@@ -59,6 +50,18 @@ Exception异常处理
         case 值 => 代码
         case -  => 代码
     }
+
+    异常捕获
+        try {
+            语句
+        } catch {
+            case e: ArithmeticException => println(e.getMessage)
+            case e: FileNotFoundException => println(e.getMessage)
+            case e: Exception => println(e.getMessage)
+            case _ => println(" : ")    // 剩下的情况
+        } finally {
+            println("finally")
+        }
 
     偏函数Partial Function
         偏函数：被包在花括号内没有match的一组case语句。

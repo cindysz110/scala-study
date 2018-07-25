@@ -11,6 +11,11 @@ object ConstructApp {
     girl.like()
 
     println(girl.city)
+
+    val littlegirl = new littleGirl("girl", 10, "computer")
+    println(littlegirl.name + " : " + littlegirl.age + " : "  + littlegirl.major)
+
+    littlegirl
   }
 
 }
@@ -43,3 +48,24 @@ class Girl(val name:String, val age:Int) {
 
 }
 
+// 类的继承
+/**
+  *
+  * 类的继承
+  * littleGirl的前半部分littleGirl(name:String, age:Int)是一个主构造器，
+  * 继承了Girl这个class
+  * 并且littleGirl还加入了自己的参数major
+  *
+  * 发生继承时，当我们创建子对象的时候，首先会调用父类的构造方法，然后才是调用子类的构造方法
+  * 如果子类里面的属性不是父类里面已经有的，前面要加val修饰符，否则外面是访问不到的
+  */
+class littleGirl(name:String, age:Int, val major :String) extends Girl(name,age) {
+
+  println("littleGirl enter")
+
+  // toString是scala内置的一个object类的方法，如果想重写父类中已有的方法时，一定需要添加overwrite修饰符
+  override def toString = "littleGirl toString"
+
+
+  println("littleGirl exit")
+}
