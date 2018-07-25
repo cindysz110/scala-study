@@ -51,12 +51,16 @@ object ArrayApp {
     //定义一个变长的数组，长度为空
     val c = ArrayBuffer[Int]()
 
-    // 向变长数组里面添加一个值
+    // 向变长数组里面添加一个元素
     c += 1
     println(c)
 
-    // 添加多个值
+    // 添加多个元素
     c += (2,3,4)
+    println(c)
+
+    // append方法也可以一次添加多个元素
+    c.append(9,9,8)
     println(c)
 
     // 添加定长数组。变长+定长使用++=
@@ -67,6 +71,12 @@ object ArrayApp {
     // 下面的方法插入到指定的地方(从第0个位置开始，添加一个0)
     c.insert(0,0)
     println(c)
+
+    println("*****************")
+    // 从集合中减去一个元素，当该元素有多个时，减去左边开始第一个
+    c -= 9
+    println(c)
+
 
     // 删除指定位置的一个值(下标从0开始）
     c.remove(1)
@@ -85,6 +95,9 @@ object ArrayApp {
     println(c.min)
     println(c.sum)
     println(c.length)
+
+    println(c.mkString)
+    println(c.mkString(","))
 
     // 变长数组转成定长数组
     // ArrayBuffer转换成定长的Array
