@@ -20,6 +20,11 @@ object StringApp  extends App {
   println(s"$s2")
 
 
+  def f(x:Int) = x + 3
 
+  val f1 = (x:Int) => x + 3
 
+  def f2(x:Int) = (f1)
+
+  println(f2(3))
 }
