@@ -20,7 +20,6 @@ object ImplicitApp {
 // 定义一个类
 class Dog(val name:String)
 
-
 class JoeyDog(val name:String) {
   def speak(): Unit = {
     println("wang wang wang.")

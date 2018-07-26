@@ -15,7 +15,7 @@ object ConstructApp {
     val littlegirl = new littleGirl("girl", 10, "computer")
     println(littlegirl.name + " : " + littlegirl.age + " : "  + littlegirl.major)
 
-    littlegirl
+    println(littlegirl)
   }
 
 }
@@ -57,7 +57,7 @@ class Girl(val name:String, val age:Int) {
   * 并且littleGirl还加入了自己的参数major
   *
   * 发生继承时，当我们创建子对象的时候，首先会调用父类的构造方法，然后才是调用子类的构造方法
-  * 如果子类里面的属性不是父类里面已经有的，前面要加val修饰符，否则外面是访问不到的
+  * 如果子类里面的属性（入参）不是父类里面已经有的，前面要加val修饰符，否则外面是访问不到的
   */
 class littleGirl(name:String, age:Int, val major :String) extends Girl(name,age) {
 
