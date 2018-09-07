@@ -16,23 +16,42 @@ object SparkSQLApp {
 
     import spark.implicits._
 
-    // create a DF
-//    val df = spark.read.json("/Users/gongli/Downloads/resources/people.json")
-//    df.show()
+    //create a DF
+    val df = spark.read.json("datas\\people.json")
+    df.show()
+    df.printSchema()
+    df.select("name").show()
+    df.select('name).show()
+    df.select($"name").show()
+    df.select($"name",$"age"+1).show()
+    df.select($"age" > 21).show()
+    df.groupBy($"age").count().show()
+    println("******************************")
+
+    // DF创建临时视图
+    df.createTempView("people")
+    spark.sql("select *from people")
+
 
     //读取文件系统上的文件并创建RDD
-    val info = spark.sparkContext.textFile("/Users/gongli/Downloads/resources/infos.txt")
+    val info = spark.sparkContext.textFile("datas\\infos.txt")
     info.collect().foreach(println)
 
-    //TODO: RDD=>DF(RDD没有schema，DF有schema，这时候就要用到case class了）
-//    case class Info(id:Int, name:String, age:Int)     //这个case class是有schema信息的，写在下面
-
-    //我们的infos.txt文件里面有三行数据，对应转成DF应该也是三条记录。把RDD中每条数据解析（map）出来：
-    //读取每一行的数据，采用逗号分割，分割出来是一个数组，然后把每一行对应的元素对照Info类做一下类型转换（因为读进来的元素全部都是string）
-    //最后再转成DF，注意toDF选择时不需要选择带schema类型的
-    import spark.implicits._
+    /**
+      * TODO: 将RDD转成DF
+      * 因为RDD没有schema，DF有schema，这时候就要用到case class来定义schema，写在下面
+      * 具体执行过程：
+      * 1. infos.txt文件里面有三行数据，对应转成DF应该也是有三条记录
+      * 2. 把RDD中每条数据解析(map)出来：读取每一行的数据，采用逗号分割，分割出来是一个数组。
+      * 3. 把数组中每一个对应的元素按照Info类的schema做一下类型转换（因为读进来的元素全部都是string）
+      * 4. 最后再转成DF，注意toDF选择不需要带schema类型的
+      */
     val infoDF = info.map(_.split(",")).map(x => Info(x(0).toInt, x(1), x(2).toInt)).toDF()
+    infoDF.printSchema()
     infoDF.show(false)
+//    val data = infoDF.select("id","name","age")
+//    data.collect().foreach(println)
+
 
 
 
