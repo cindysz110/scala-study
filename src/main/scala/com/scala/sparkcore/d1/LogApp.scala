@@ -76,8 +76,45 @@ object LogApp {
     }).reduceByKey(_+_).sortBy(_._2, false)     // false降序
 
 
+    // TODO... 求每个域名下访问数最多的文件资源（访问全路径http://domain/a/b/c/d.mp4?x=y&w=z）   窗口函数  结果可以画热力图，密集度
+    /**
+      * 截取资源的一部分，其中域名domain在第一个字段已经有了，资源其实是：/a/b/c/d.mp4, domian后第一个斜杠后到第一个问号之前的内容
+      */
+    lines.map(x => {
+      val temp = x.split("\t")
+      getResource(temp(12))
+    }).take(100).foreach(println)
+
+
+    lines.map(x => {
+      val temp = x.split("\t")
+      ((temp(0), getResource(temp(12))),1)    // （（域名，资源），1）
+    }).reduceByKey(_+_).groupBy(_._1._1)
+        .mapValues(_.toList.sortBy(_._2).reverse.take(10))
+        .map(_._2)
+        .collect().foreach(println)
+
+      //.take(10).foreach(println)
+
+
     // spark编程模板第三步：关闭SparkContext
     sc.stop()
   }
 
+  def getResource(url:String) = {
+
+    // 把开头两个斜杠去掉
+    val pathTemp = url.replaceFirst("//", "")
+    var pathIndex = pathTemp.indexOf("/")
+
+    var path = ""
+    if(pathIndex != -1) {
+      path = pathTemp.substring(pathIndex)
+      pathIndex = path.indexOf("?")
+      if (pathIndex != -1) {
+        path = path.substring(0, pathIndex) // 字符串截取
+      }
+    }
+    path
+  }
 }
